@@ -73,12 +73,11 @@ async def login_qr(
 
     # Step 2: 长轮询等待扫码
     effective_timeout = min(float(qr_timeout), max_wait)
-    poll_request_timeout = min(5.0, max(1.0, poll_interval + 1.0))
+    poll_request_timeout = 60.0
     logger.debug(
-        "二维码长轮询开始: effective_timeout={}s, request_timeout={}s, interval={}s",
+        "二维码长轮询开始: effective_timeout={}s, request_timeout={}s",
         f"{effective_timeout:.0f}",
-        f"{poll_request_timeout:.1f}",
-        f"{poll_interval:.1f}",
+        f"{poll_request_timeout:.0f}",
     )
     start_time = time.time()
 
@@ -88,7 +87,10 @@ async def login_qr(
             raise AuthError(f"二维码扫码超时（{effective_timeout:.0f}s），请重新获取")
 
         try:
-            resp = await http.get(long_polling_url, timeout=poll_request_timeout)
+            # 直接调用 httpx.AsyncClient.get 绕过 RetryAsyncClient 的重试
+            resp = await httpx.AsyncClient.request(
+                http, "GET", long_polling_url, timeout=poll_request_timeout
+            )
         except (asyncio.CancelledError, KeyboardInterrupt):
             logger.warning("二维码登录轮询被中断")
             raise
