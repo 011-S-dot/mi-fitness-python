@@ -385,7 +385,9 @@ class BloodPressureData(BaseModel):
 
     time: int = Field(default=0, validation_alias=AliasChoices("time", "date_time"))
     systolic: int = Field(default=0, validation_alias=AliasChoices("systolic", "systolic_pressure"))
-    diastolic: int = Field(default=0, validation_alias=AliasChoices("diastolic", "diastolic_pressure"))
+    diastolic: int = Field(
+        default=0, validation_alias=AliasChoices("diastolic", "diastolic_pressure")
+    )
     pulse: int | None = None
 
     def __str__(self) -> str:
@@ -1134,7 +1136,6 @@ class DeleteRelativeResponse(_DictResultResponse):
         return _coerce_bool(self.result.get("delete_ret"))
 
 
-
 class SharedDataTypesResponse(_DictResultResponse):
     """get_shared_data_types 响应。"""
 
@@ -1250,7 +1251,9 @@ class CheckNewMsgResponse(_ListResultResponse):
     def has_new(self, module: int = 1) -> bool:
         """指定 module 是否有新消息。"""
         for item in self.result:
-            if _coerce_int(item.get("module"), default=0) == module and _coerce_bool(item.get("is_new")):
+            if _coerce_int(item.get("module"), default=0) == module and _coerce_bool(
+                item.get("is_new")
+            ):
                 return True
         return False
 

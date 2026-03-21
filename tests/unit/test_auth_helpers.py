@@ -33,8 +33,14 @@ def test_parse_mi_response_raises_auth_error_for_invalid_json() -> None:
 
 
 def test_normalize_captcha_url_prepends_account_domain() -> None:
-    assert auth_helpers.normalize_captcha_url("/pass/getCode?id=1") == "https://account.xiaomi.com/pass/getCode?id=1"
-    assert auth_helpers.normalize_captcha_url("https://example.com/captcha") == "https://example.com/captcha"
+    assert (
+        auth_helpers.normalize_captcha_url("/pass/getCode?id=1")
+        == "https://account.xiaomi.com/pass/getCode?id=1"
+    )
+    assert (
+        auth_helpers.normalize_captcha_url("https://example.com/captcha")
+        == "https://example.com/captcha"
+    )
 
 
 def test_set_cookie_for_domains_writes_both_domains() -> None:
@@ -105,7 +111,9 @@ async def test_extract_service_token_raises_when_missing_everywhere() -> None:
 
 
 @pytest.mark.asyncio
-async def test_extract_credentials_populates_token_and_service_token(monkeypatch: pytest.MonkeyPatch) -> None:
+async def test_extract_credentials_populates_token_and_service_token(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     http = MagicMock()
     token = AuthToken()
     extract_service_token = AsyncMock(return_value="service-token")
@@ -132,7 +140,9 @@ async def test_extract_credentials_populates_token_and_service_token(monkeypatch
 
 
 @pytest.mark.asyncio
-async def test_sts_exchange_uses_device_id_and_accepts_ok_response(monkeypatch: pytest.MonkeyPatch) -> None:
+async def test_sts_exchange_uses_device_id_and_accepts_ok_response(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     http = MagicMock()
     http.get = AsyncMock(return_value=_response(text="ok"))
     token = AuthToken(device_id="an_device")

@@ -32,7 +32,9 @@ async def test_encrypted_request_accepts_string_zero_code(
     http = MagicMock()
     http.get = AsyncMock(return_value=_mock_response())
 
-    monkeypatch.setattr(client_base, "build_encrypted_params", lambda *args, **kwargs: {"_nonce": "nonce"})
+    monkeypatch.setattr(
+        client_base, "build_encrypted_params", lambda *args, **kwargs: {"_nonce": "nonce"}
+    )
     monkeypatch.setattr(
         client_base,
         "decrypt_response",
@@ -50,7 +52,9 @@ async def test_encrypted_request_uses_string_code_for_not_relatives(
     http = MagicMock()
     http.get = AsyncMock(return_value=_mock_response())
 
-    monkeypatch.setattr(client_base, "build_encrypted_params", lambda *args, **kwargs: {"_nonce": "nonce"})
+    monkeypatch.setattr(
+        client_base, "build_encrypted_params", lambda *args, **kwargs: {"_nonce": "nonce"}
+    )
     monkeypatch.setattr(
         client_base,
         "decrypt_response",
@@ -79,7 +83,9 @@ async def test_encrypted_request_uses_string_code_for_data_not_shared(
     http = MagicMock()
     http.get = AsyncMock(return_value=_mock_response())
 
-    monkeypatch.setattr(client_base, "build_encrypted_params", lambda *args, **kwargs: {"_nonce": "nonce"})
+    monkeypatch.setattr(
+        client_base, "build_encrypted_params", lambda *args, **kwargs: {"_nonce": "nonce"}
+    )
     monkeypatch.setattr(
         client_base,
         "decrypt_response",
@@ -108,7 +114,9 @@ async def test_encrypted_request_raises_time_scope_error_for_out_of_range_dates(
     http = MagicMock()
     http.get = AsyncMock(return_value=_mock_response())
 
-    monkeypatch.setattr(client_base, "build_encrypted_params", lambda *args, **kwargs: {"_nonce": "nonce"})
+    monkeypatch.setattr(
+        client_base, "build_encrypted_params", lambda *args, **kwargs: {"_nonce": "nonce"}
+    )
     monkeypatch.setattr(
         client_base,
         "decrypt_response",

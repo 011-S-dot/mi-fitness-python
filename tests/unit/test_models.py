@@ -404,9 +404,13 @@ class TestAggregatedDataItem:
         assert st.time == 1717430400
 
     def test_as_simple_latest_metrics(self) -> None:
-        calories_item = AggregatedDataItem(time=1717430400, key="calories", value='{"calories":338}')
+        calories_item = AggregatedDataItem(
+            time=1717430400, key="calories", value='{"calories":338}'
+        )
         stand_item = AggregatedDataItem(time=1717430400, key="valid_stand", value='{"count":10}')
-        intensity_item = AggregatedDataItem(time=1717430400, key="intensity", value='{"duration":19}')
+        intensity_item = AggregatedDataItem(
+            time=1717430400, key="intensity", value='{"duration":19}'
+        )
 
         calories = calories_item.as_calories()
         stand = stand_item.as_valid_stand()
@@ -529,7 +533,11 @@ class TestLatestDataResponse:
             code=0,
             result={
                 "data_list": [
-                    {"time": 1717488000, "key": "heart_rate", "value": '{"time":1717491600,"bpm":84}'},
+                    {
+                        "time": 1717488000,
+                        "key": "heart_rate",
+                        "value": '{"time":1717491600,"bpm":84}',
+                    },
                     {
                         "time": 1717488000,
                         "key": "steps",
@@ -660,7 +668,6 @@ class TestOperateInviteResponse:
     def test_failure(self) -> None:
         resp = OperateInviteResponse(code=0, result={"operate_ret": False})
         assert resp.success is False
-
 
 
 class TestSharedDataTypesResponse:

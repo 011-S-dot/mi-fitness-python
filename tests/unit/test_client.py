@@ -667,7 +667,9 @@ class TestGetLatestMetricHelpers:
         assert isinstance(spo2, Spo2Data)
         assert spo2.spo2 == 96
 
-    async def test_blood_pressure_returns_none_when_shared_but_no_payload(self, mock_auth: Any) -> None:
+    async def test_blood_pressure_returns_none_when_shared_but_no_payload(
+        self, mock_auth: Any
+    ) -> None:
         client = _make_client(mock_auth)
         client._request = AsyncMock(return_value=LATEST_DATA_RESPONSE)
         client.get_shared_data_types = AsyncMock(return_value=["blood_pressure"])  # type: ignore[method-assign]
@@ -676,7 +678,9 @@ class TestGetLatestMetricHelpers:
 
         assert blood_pressure is None
 
-    async def test_blood_pressure_supports_fitness_aliases_in_latest_payload(self, mock_auth: Any) -> None:
+    async def test_blood_pressure_supports_fitness_aliases_in_latest_payload(
+        self, mock_auth: Any
+    ) -> None:
         client = _make_client(mock_auth)
         resp = {
             "code": 0,
@@ -754,7 +758,9 @@ class TestGetDailySummary:
         assert summary.sleep is not None
         assert summary.steps is not None
 
-    async def test_get_latest_daily_summary_falls_back_to_latest_snapshot_time(self, mock_auth: Any) -> None:
+    async def test_get_latest_daily_summary_falls_back_to_latest_snapshot_time(
+        self, mock_auth: Any
+    ) -> None:
         client = _make_client(mock_auth)
         client.find_relative = AsyncMock(
             return_value=type(

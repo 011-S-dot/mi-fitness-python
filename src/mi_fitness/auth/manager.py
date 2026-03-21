@@ -155,7 +155,12 @@ class XiaomiAuth:
 
         try:
             await _pwd.submit_login(
-                http, self.token, self.username, self._password, sign, callback,
+                http,
+                self.token,
+                self.username,
+                self._password,
+                sign,
+                callback,
             )
         except DeviceUntrustedError:
             if verification_code_handler is None:
@@ -281,14 +286,18 @@ class XiaomiAuth:
         await self._run_with_captcha_retries(
             http,
             lambda captcha_code: _pwd.send_ticket(
-                http, self.username, captcha_code=captcha_code,
+                http,
+                self.username,
+                captcha_code=captcha_code,
             ),
             captcha_handler=captcha_handler,
         )
         phone, ticket_token = await self._run_with_captcha_retries(
             http,
             lambda captcha_code: _pwd.get_phone_info(
-                http, self.username, captcha_code=captcha_code,
+                http,
+                self.username,
+                captcha_code=captcha_code,
             ),
             captcha_handler=captcha_handler,
         )

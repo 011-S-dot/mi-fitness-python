@@ -301,8 +301,7 @@ async def submit_ticket_auth(
         "callback": callback,
         "ticket": code,
         "qs": (
-            f"%3F_loginSign%3Dticket%26_json%3Dtrue"
-            f"%26sid%3D{SERVICE_SID_HEALTH}%26_locale%3Dzh_CN"
+            f"%3F_loginSign%3Dticket%26_json%3Dtrue%26sid%3D{SERVICE_SID_HEALTH}%26_locale%3Dzh_CN"
         ),
         "_locale": "zh_CN",
     }

@@ -172,8 +172,7 @@ LATEST_DATA_RESPONSE = {
             {
                 "key": "blood_pressure",
             },
-        ]
-        ,
+        ],
         "latest_data_time": 1717495200,
     },
 }
@@ -287,8 +286,7 @@ FITNESS_BLOOD_PRESSURE_RESPONSE = {
                 "key": "blood_pressure",
                 "time": 1773753098,
                 "value": (
-                    '{"systolic_pressure":33,"diastolic_pressure":30,'
-                    '"pulse":60,"time":1773753098}'
+                    '{"systolic_pressure":33,"diastolic_pressure":30,"pulse":60,"time":1773753098}'
                 ),
                 "update_time": 1773753098,
                 "watermark": "w6",

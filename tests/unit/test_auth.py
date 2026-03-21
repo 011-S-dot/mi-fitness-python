@@ -179,7 +179,9 @@ async def test_refresh_requires_pass_token() -> None:
 
 async def test_password_login_wrong_password_raises_auth_error() -> None:
     http = MagicMock()
-    http.post = AsyncMock(return_value=_http_response('&&&START&&&{"code":70002,"desc":"invalid credential"}'))
+    http.post = AsyncMock(
+        return_value=_http_response('&&&START&&&{"code":70002,"desc":"invalid credential"}')
+    )
 
     with pytest.raises(AuthError, match="登录失败"):
         await password_module._raw_submit_login(http, "13800138000", "bad", "sign", "callback")
@@ -197,7 +199,9 @@ async def test_submit_login_requires_device_verification() -> None:
         )
 
         with pytest.raises(DeviceUntrustedError, match="二次验证"):
-            await password_module.submit_login(http, token, "13800138000", "secret", "sign", "callback")
+            await password_module.submit_login(
+                http, token, "13800138000", "secret", "sign", "callback"
+            )
 
 
 async def test_submit_login_requires_trusted_device_when_security_status_non_zero() -> None:
@@ -212,7 +216,9 @@ async def test_submit_login_requires_trusted_device_when_security_status_non_zer
         )
 
         with pytest.raises(DeviceUntrustedError, match="设备未受信任"):
-            await password_module.submit_login(http, token, "13800138000", "secret", "sign", "callback")
+            await password_module.submit_login(
+                http, token, "13800138000", "secret", "sign", "callback"
+            )
 
 
 async def test_qr_login_times_out(monkeypatch: pytest.MonkeyPatch) -> None:

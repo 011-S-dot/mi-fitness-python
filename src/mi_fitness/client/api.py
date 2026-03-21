@@ -240,7 +240,13 @@ class MiHealthClient:
     ) -> AggregatedDataResponse:
         """获取亲友的聚合数据。"""
         return await _data.get_aggregated_data(
-            self, relative_uid, key, start_time, end_time, tag=tag, limit=limit,
+            self,
+            relative_uid,
+            key,
+            start_time,
+            end_time,
+            tag=tag,
+            limit=limit,
         )
 
     async def get_fitness_data(
@@ -254,7 +260,12 @@ class MiHealthClient:
     ) -> AggregatedDataResponse:
         """获取亲友的原始测量/事件数据（如体重、血压、异常心率等）。"""
         return await _data.get_fitness_data(
-            self, relative_uid, key, start_time, end_time, limit=limit,
+            self,
+            relative_uid,
+            key,
+            start_time,
+            end_time,
+            limit=limit,
         )
 
     async def get_heart_rate(
