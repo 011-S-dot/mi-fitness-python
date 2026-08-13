@@ -22,5 +22,5 @@ jobs:
           USER_ID: ${{ secrets.USER_ID }}
           TOKEN_JSON: ${{ secrets.TOKEN_JSON }}
         run: |
-          echo "$TOKEN_JSON" > token.json
-          python fetch_health.py
+  echo "$TOKEN_JSON" > token.json
+  python .github/workflows/fetch_health.py
